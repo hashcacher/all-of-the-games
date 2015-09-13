@@ -7,5 +7,5 @@ _summer ## (????????? ???????) (2006, GN Software (GN Software)) (PS2)
 .38 Ambush Alley (1987, Worlds of Wonder (Worlds of Wonder;CCR Video Corporation)) (Action Max)
 .detuned (2009, Sony Computer Entertainment (.theprodukkt)) (PS3)
 
-(.+?) (\((.+?)\))? \((\d{4}), (.+? (\(.+\))?)
-(.+?) (\((.+?)\))? (.+)?
+Magic regex
+(.+?)(\(.+?\))? \((\d{4}), (.+?)(\(.+?\))?\) \((.+)\)
