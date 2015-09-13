@@ -1,0 +1,11 @@
+_summer (?????????) (2005, Hook (Hook)) (Windows)
+_summer ## (????????? ???????) (2006, GN Software (GN Software)) (PS2)
+-PP- Pianissimo (?????? ?????????????;Pianissimo ~ Ayatsuri Ningyou no Rinbu ~) (2006, Innocent Grey) (Windows)
+:Loop - Izanahi no Kaikiten (Loop - Regress Points of Invitation;:LOOP ~????????~) (1995, Grocer) (PC-9801)
+!Que Pasa Neng! (2006, Atari (Phoenix Games Group)) (PS2)
+...Iru! (���??!) (1998, Takara (Takara)) (PS1)
+.38 Ambush Alley (1987, Worlds of Wonder (Worlds of Wonder;CCR Video Corporation)) (Action Max)
+.detuned (2009, Sony Computer Entertainment (.theprodukkt)) (PS3)
+
+(.+?) (\((.+?)\))? \((\d{4}), (.+? (\(.+\))?)
+(.+?) (\((.+?)\))? (.+)?
