@@ -12,6 +12,10 @@ When a game is clicked, information should be pulled from Google Images/IGN/Meta
 ###### Preprocessing
 Group the makers by connectedness
 
+Cleanup
+* Ubi Soft = Ubisoft
+* Some rows are split into 2 lines
+
 ###### Joining more data
 * Metacritic
 * Maker revenue
