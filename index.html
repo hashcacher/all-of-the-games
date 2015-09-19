@@ -16,27 +16,31 @@ text {
 <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.5/d3.min.js"></script>
 <script>
 
-var diameter = 20000,
+var width = window.innerWidth*.99,
+    height = window.innerHeight*.99
     format = d3.format(",d"),
     color = d3.scale.category20c();
     active = d3.select(null);
 
 var zoom = d3.behavior.zoom()
     .translate([0,0])
-    .scale(1)
-    .scaleExtent([.1, 8])
+    .scale(.9)
+    .scaleExtent([.5, 8])
     .on("zoom", zoomed);
+
+// zoomed();
+// g.attr("transform", "translate(" + diameter/2 + "," + diameter/2 + ")scale(" + "8" + ")");
 
 var bubble = d3.layout.pack()
     .sort(null)
-    .size([diameter, diameter])
+    .size([width, height])
     .padding(1.5);
 
 var svg = d3.select("body").append("svg")
-    .attr("width", diameter)
-    .attr("height", diameter)
+    .attr("width", width)
+    .attr("height", height)
     .attr("class", "bubble")
-    // .on("click", stopped, true);
+    .on("click", stopped, true);
 
 var g = svg.append("g");
 
@@ -76,27 +80,38 @@ function clicked(d) {
   active.classed("active", false);
   active = d3.select(this).classed("active", true);
 
+  var dur = 500;
+  active.transition()
+        .duration(dur)
+        .style('opacity', .2);
+
   var dx = d.r*2,
       dy = d.r*2,
       x = d.x,
       y = d.y,
-      scale = .08 / Math.max(dx / diameter, dy / diameter),
-      translate = [diameter / 2 - scale * x, diameter / 2 - scale * y];
+      scale = .9 / Math.max(dx / width, dy / height),
+      translate = [width / 2 - scale * x, height / 2 - scale * y];
       //translate = [diameter / 2 - scale * x, diameter / 2 - scale * y];
 
   console.log(scale);
 
   svg.transition()
-      .duration(7500)
+      .duration(500)
       .call(zoom.translate(translate).scale(scale).event);
 }
 
 function reset() {
   active.classed("active", false);
+  active.style('opacity', 1);
   active = d3.select(null);
 
+  var dur = 500;
+  active.transition()
+        .duration(dur)
+        .style('opacity', 1);
+
   svg.transition()
-      .duration(7500)
+      .duration(dur)
       .call(zoom.translate([0, 0]).scale(1).event);
 }
 
@@ -129,6 +144,6 @@ function classes(root) {
   return {children: classes};
 }
 
-d3.select(self.frameElement).style("height", diameter + "px");
+d3.select(self.frameElement).style("height", height + "px");
 
 </script>
