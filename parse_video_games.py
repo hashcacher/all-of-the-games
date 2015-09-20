@@ -12,6 +12,7 @@ import json
 
 def parse_video_games(game_file):
 	makers = {}
+	platforms = {}
 	n_bad = 0
 	n_good = 0
 
@@ -26,10 +27,32 @@ def parse_video_games(game_file):
 
 		#these we matches successfully ~75000
 		else:
-			if m.group(4).strip() not in makers:
-				makers[m.group(4).strip()] = [[m.group(1).strip(), m.group(3), m.group(6)]]
+			maker = m.group(4).strip()
+			title = m.group(1).strip()
+			year = int(m.group(3).strip())
+			platform = m.group(6).strip()
+
+			if maker not in makers:
+				makers[maker] = {}
+				makers[maker]['minyear'] = makers[maker]['maxyear'] = year
+				makers[maker]['count'] = 1
 			else:
-				makers[m.group(4).strip()].append([m.group(1).strip(), m.group(3), m.group(6)])
+				makers[maker]['minyear'] = \
+					min(year, makers[maker]['minyear'])
+				makers[maker]['maxyear'] = \
+					max(year, makers[maker]['maxyear'])
+				makers[maker]['count'] += 1
+
+
+			makers[maker][title] = {
+				'year': year,
+				'platform': platform
+			}
+			if platform in platforms:
+				platforms[platform] += 1
+			else:
+				platforms[platform] = 0
+
 			# n_good += 1
 			# string = ''
 			# for group in m.groups():
@@ -44,10 +67,6 @@ def parse_video_games(game_file):
 		if i % 1000 == 0:
 		 	print i
 	# print 'good:', n_good, 'bad: ', n_bad
-
-	for maker in makers:
-		makers[maker].insert(0, len(makers[maker]))
-
 	return makers
 
 
