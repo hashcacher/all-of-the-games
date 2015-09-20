@@ -108,7 +108,7 @@ function clicked(d) {
   console.log(scale);
 
   svg.transition()
-      .duration(500)
+      .duration(800)
       .call(zoom.translate(translate).scale(scale).event);
 
   //show games:
@@ -175,20 +175,20 @@ function games(data, node) {
           console.log(d);
         return xScale(d.year)-squareSize/2; 
       })
-      .attr("y", year.selectAll(".game").size()*squareSize - node.r*.57)
+      .attr("y", year.selectAll(".game").size()*squareSize - node.r*.45)
       .attr("width", squareSize)
       .attr("height", squareSize)
       .style("fill", function(d) { return color(d['platform']); });
 
     texts.append("text")
-      .attr("y", year.selectAll(".game").size()*squareSize+squareSize/2 - node.r*.57)
+      .attr("y", year.selectAll(".game").size()*squareSize + squareSize/2 - node.r*.45)
       .attr("x",function(d) { return xScale(d.year)})
       .attr("class","value")
       .style("text-anchor", "middle")
       .text(game.substring(0,squareSize))
 
     texts.append("text")
-      .attr("y", year.selectAll(".game").size()*squareSize+squareSize/2 - node.r*.57 + 2)
+      .attr("y", year.selectAll(".game").size()*squareSize + squareSize/2 - node.r*.45 + 2)
       .attr("x",function(d) { return xScale(d.year)})
       .attr("class","value")
       .style("text-anchor", "middle")
@@ -203,7 +203,7 @@ function reset() {
   active.classed("active", false);
   active = d3.select(null);
 
-  var dur = 500;
+  var dur = 800;
   active.select("circle")
         .transition()
         .duration(dur)
@@ -211,7 +211,7 @@ function reset() {
 
   svg.transition()
       .duration(dur)
-      .call(zoom.translate([0, 0]).scale(.1).event);
+      .call(zoom.translate([0, 0]).scale(.07).event);
 }
 
 function zoomed() {
